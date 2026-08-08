@@ -154,7 +154,7 @@ supabase/
 └── seed.sql
 ```
 
-La trazabilidad de los 53 RF está en [`docs/RF_COVERAGE.md`](docs/RF_COVERAGE.md). La introducción al sistema, arquitectura, accesos y reglas para el equipo de pruebas está en [`docs/GUIA_PRUEBAS_COMPANEROS.md`](docs/GUIA_PRUEBAS_COMPANEROS.md).
+La trazabilidad de los 53 RF está en [`docs/RF_COVERAGE.md`](docs/RF_COVERAGE.md).
 
 ## Decisiones del Release 1
 
