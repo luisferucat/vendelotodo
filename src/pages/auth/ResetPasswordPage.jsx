@@ -5,6 +5,25 @@ import FormField from '../../components/FormField'
 import { useAuth } from '../../context/AuthContext'
 import { supabase } from '../../lib/supabase'
 
+const passwordUpdateMessage = (error) => {
+  const message = error?.message || ''
+  const normalized = message.toLowerCase()
+
+  if (normalized.includes('different from the old') || normalized.includes('same password')) {
+    return 'La nueva contraseña debe ser diferente de la contraseña anterior.'
+  }
+  if (normalized.includes('weak password') || normalized.includes('password should') || normalized.includes('characters')) {
+    return 'La contraseña no cumple los requisitos de seguridad. Use al menos 12 caracteres e incluya mayúscula, minúscula, número y símbolo.'
+  }
+  if (normalized.includes('session') || normalized.includes('jwt') || normalized.includes('expired')) {
+    return 'La sesión de recuperación expiró. Solicite un enlace nuevo.'
+  }
+
+  return message
+    ? `No fue posible actualizar la contraseña. Supabase indicó: ${message}`
+    : 'No fue posible actualizar la contraseña. Solicite un enlace nuevo.'
+}
+
 export default function ResetPasswordPage() {
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
@@ -50,8 +69,8 @@ export default function ResetPasswordPage() {
       await updatePassword(password)
       await supabase.auth.signOut()
       navigate('/ingresar', { replace: true })
-    } catch {
-      setError('No fue posible actualizar la contraseña. Solicite un enlace nuevo.')
+    } catch (updateError) {
+      setError(passwordUpdateMessage(updateError))
     }
   }
 

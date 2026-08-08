@@ -40,7 +40,11 @@ export function AuthProvider({ children }) {
     }
 
     supabase.auth.getSession().then(({ data }) => loadProfile(data.session))
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, nextSession) => loadProfile(nextSession))
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      // Run data fetching after the auth callback finishes so password and
+      // session updates are never blocked by another Supabase request.
+      setTimeout(() => { loadProfile(nextSession) }, 0)
+    })
     return () => listener.subscription.unsubscribe()
   }, [])
 
