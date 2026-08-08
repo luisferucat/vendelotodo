@@ -153,7 +153,7 @@ function buildOrderEmail(data) {
     `VendeloTodo coordinará la visita usando el teléfono ${common.phone}.`,
   ].join('\n')
 
-  return { to: common.customerEmail, subject: `Solicitud recibida - ${orderNumber}`, html, text }
+  return { to: common.customerEmail, subject: `Cotización recibida - ${orderNumber}`, html, text }
 }
 
 function isSameOrigin(request) {

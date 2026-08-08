@@ -14,8 +14,8 @@ export default function CatalogPage() {
   const [loading, setLoading] = useState(true)
   useEffect(() => { Promise.all([dataService.getProducts(), dataService.getCategories()]).then(([p, c]) => { setProducts(p); setCategories(c); setLoading(false) }) }, [])
   const filtered = useMemo(() => products.filter((item) => {
-    const term = search.toLowerCase().trim()
-    const matchesSearch = !term || `${item.name} ${item.description} ${item.sku}`.toLowerCase().includes(term)
+    const term = search.trim()
+    const matchesSearch = !term || `${item.name} ${item.description} ${item.sku}`.includes(term)
     const matchesCategory = category === 'all' || item.category_id === category
     const matchesAvailability = availability === 'all' || (availability === 'available' && item.availability_type === 'InStock' && item.stock_quantity > 0) || (availability === 'request' && item.availability_type === 'OnRequest') || (availability === 'out' && item.availability_type === 'InStock' && item.stock_quantity === 0)
     return matchesSearch && matchesCategory && matchesAvailability

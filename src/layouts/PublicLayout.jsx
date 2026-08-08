@@ -23,7 +23,7 @@ export default function PublicLayout() {
       <footer className="public-footer">
         <div><Link className="brand brand--light" to="/"><span>V</span><div>VendeloTodo<small>Servicio local, atención cercana</small></div></Link><p>Productos y soluciones técnicas para hogares de la Zona Norte.</p></div>
         <div><h3>Cobertura</h3><p>San Carlos · Río Cuarto<br />La Virgen de Sarapiquí · Santa Rosa</p></div>
-        <div><h3>Contacto</h3><a href="mailto:vedelotodoucat@gmail.com">vedelotodoucat@gmail.com</a><p>Lunes a sábado, 8:00 a.m. – 5:00 p.m.</p></div>
+        <div><h3>Contacto</h3><a href="mailto:vedelotodoucat@gmail.com">vedelotodoucat@gmail.com</a><p><a href="https://www.meta.com/" target="_blank" rel="noreferrer">Facebook</a></p><p>Lunes a sábado, 8:00 a.m. – 5:00 p.m.</p></div>
         <small>© 2026 VendeloTodo · Release 1 · WhatsApp no incluido en esta versión.</small>
       </footer>
     </div>
