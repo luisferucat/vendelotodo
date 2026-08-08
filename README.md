@@ -116,6 +116,21 @@ Después del primer push:
 
 `vercel.json` ya incluye la reescritura necesaria para que las rutas de React funcionen al recargar.
 
+## 7. Correos de confirmación de cotizaciones y órdenes
+
+Los correos de autenticación (confirmación de cuenta y recuperación de contraseña) salen desde el SMTP configurado en Supabase. Las confirmaciones de cotizaciones y solicitudes de servicio usan una función privada de Vercel, siguiendo el mismo patrón de Herbalist.
+
+En **Vercel → Project Settings → Environment Variables**, agregue para Production, Preview y Development:
+
+```text
+GMAIL_USER=vedelotodoucat@gmail.com
+GMAIL_APP_PASSWORD=CONTRASENA_DE_APLICACION_DE_GOOGLE
+```
+
+Use una contraseña de aplicación de Google exclusiva para Vercel y nunca una contraseña normal de Gmail. No agregue el prefijo `VITE_`, no guarde el valor real en `.env.example` y no lo suba a GitHub. Después de crear o cambiar estas variables, haga un nuevo despliegue.
+
+El correo es obligatorio en los formularios públicos de cotización y orden. El registro se guarda primero en Supabase y luego se intenta enviar la confirmación: si Gmail falla, la pantalla conserva el número generado y avisa que el correo no pudo enviarse.
+
 ## Estructura principal
 
 ```text

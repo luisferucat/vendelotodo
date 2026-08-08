@@ -26,4 +26,8 @@ export default [
     },
     settings: { react: { version: 'detect' } },
   },
+  {
+    files: ['api/**/*.js'],
+    languageOptions: { globals: globals.node },
+  },
 ]
